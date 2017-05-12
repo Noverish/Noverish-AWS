@@ -24,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // port setup
 app.set('port', process.env.PORT || 9000);
 
+app.use(express.static('static'));
 app.use('/', index);
 app.use('/users', users);
 
