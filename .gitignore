@@ -1,3 +1,8 @@
+app.js
+noverish_aws.pem
+noverish_aws.ppk
+package.json
+
 # Created by https://www.gitignore.io/api/node
 
 ### Node ###

@@ -21,6 +21,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// port setup
+app.set('port', process.env.PORT || 9000);
 
 app.use('/', index);
 app.use('/users', users);
@@ -41,6 +43,14 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+//////////////////////////////////////////////////////
+// ------- creates Server -------
+module.exports = app;
+
+var server = app.listen(app.get('port'), function() {
+    console.log('Express server listening on port ' + server.address().port);
 });
 
 module.exports = app;
