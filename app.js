@@ -13,6 +13,8 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+// port setup
+app.set('port', process.env.PORT || 9000);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -21,9 +23,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-// port setup
-app.set('port', process.env.PORT || 9001);
 
+app.use(express.static('static'));
 app.use('/', index);
 app.use('/users', users);
 
@@ -45,12 +46,11 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-//////////////////////////////////////////////////////
-// ------- creates Server -------
+// creates Server
 module.exports = app;
 
 var server = app.listen(app.get('port'), function() {
-    console.log('Express server listening on port ' + server.address().port);
+  console.log('Express server listening on port ' + server.address().port);
 });
 
 module.exports = app;
