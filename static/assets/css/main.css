@@ -3512,8 +3512,8 @@
 
 		#banner.major {
 			height: 100vh;
-			min-height: 30em;
-			max-height: 50em;
+			min-height: 100vh;
+			max-height: 100vh;
 		}
 
 			#banner.major.alt {
