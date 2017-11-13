@@ -1,5 +1,6 @@
 @import url(font-awesome.min.css);
 @import url("https://fonts.googleapis.com/css?family=Merriweather:300,700,300italic,700italic|Source+Sans+Pro:900");
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
 /*
 	Massively by HTML5 UP
@@ -1700,6 +1701,7 @@
 	}
 
 	p {
+        font-family: "Nanum Gothic", Helvetica, sans-serif;
 		text-align: justify;
 		margin: 0 0 2rem 0;
 	}
@@ -3082,7 +3084,7 @@
 
 	#intro {
 		color: #ffffff;
-		padding: 8rem 4rem 6rem 4rem ;
+		padding: 8rem 4rem 0rem 4rem ;
 		-moz-align-items: center;
 		-webkit-align-items: center;
 		-ms-align-items: center;
@@ -3424,7 +3426,7 @@
 		background: rgba(255, 255, 255, 0.175);
 		height: 4rem;
 		line-height: 4rem;
-		margin: -4rem auto 0 auto;
+		margin: 0 auto 0 auto;
 		overflow: hidden;
 		padding: 0 2rem 0 0;
 		position: relative;
