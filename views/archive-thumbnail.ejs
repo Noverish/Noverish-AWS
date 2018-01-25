@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Noverish Archive</title>
+        <meta charset="UTF-8">
+    </head>
+    <body style="background-color: white;">
+        <h1>path is '<%= path %>'</h1>
+        <% for (var i = 0; i < objects.length; i++) { %>
+        <a href="<%= objects[i].link %>">
+            <img width=200 height=200 src="<%= objects[i].src %>"/>
+        </a>
+        <% } %>
+    </body>
+</html>
