@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var archive = require('./routes/archive');
 var pupil = require('./routes/pupil');
+var blogWebhook = require('./routes/blog-webhook');
 
 var app = express();
 
@@ -25,6 +26,7 @@ app.use(cookieParser());
 
 app.use('/', express.static('static'));
 app.use('/blog', express.static('blog'));
+app.use('/blog/webhook', blogWebhook)
 app.use('/archive', archive);
 app.use('/pupil', pupil);
 
