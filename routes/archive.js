@@ -12,7 +12,6 @@ const bucketName = 'noverish';
 const thumbnailBucket = 'noverish-thumbnail';
 const LOAD_NUM = 1000;
 
-let isThumbnail = false;
 let continueToken = null;
 
 router.get('/', function(req, res, next) {
@@ -20,10 +19,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/:path*', function(req, res, next) {
-    if(req.query.hasOwnProperty('thumbnail')) {
-        isThumbnail = (req.query['thumbnail'] === 'true');
-    }
-
     if(req.query.hasOwnProperty('continueToken')) {
         continueToken = parseInt(req.query['continueToken']);
     }
@@ -40,11 +35,7 @@ function checkObjectExist(path, res) {
 
     s3.headObject(params, function(err, data) {
         if(err) {
-            if(isThumbnail) {
-                showObjectThumbnails(path, res);
-            } else {
-                showObjectList(path, res);
-            }
+            getObjectList(path, res);
         } else {
             showObject(path, res);
         }
@@ -66,7 +57,7 @@ function showObject(path, res) {
     });
 }
 
-function showObjectList(path, res) {
+function getObjectList(path, res) {
     if(path === '/')
         path = '';
     else
@@ -84,97 +75,106 @@ function showObjectList(path, res) {
             return;
         }
 
+        let folders = [];
         let objects = [];
 
         data.CommonPrefixes.forEach(function(element) {
-            let link = '/archive/' + element.Prefix;
             let name = element.Prefix.replace(path, '');
-            objects.push({
-                link: link,
-                name: name
-            })
+            folders.push(name)
         });
 
         data.Contents.forEach(function(element) {
-            let link = '/archive/' + element.Key;
             let name = element.Key.replace(path, '');
-            objects.push({
-                link: link,
-                name: name
-            })
+            objects.push(name)
         });
 
-        if(path !== '/') {
-            objects.unshift({
-                link: '../',
-                name: '../'
-            });
-        }
-
-        res.render('archive', { path: path, objects: objects });
+        processObjectList(path, res, folders, objects);
     });
 }
 
-function showObjectThumbnails(path, res) {
-    if(path === '/')
-        path = '';
-    else
-        path += '/';
+function processObjectList(path, res, folders, objects) {
+    if (objects.length > folders.length) {
+        showObjectThumbnails(path, res, folders, objects)
+    } else {
+        showObjectList(path, res, folders, objects)
+    }
+}
 
-    const params = {
-        Bucket: bucketName,
-        Prefix: path,
-        Delimiter: '/',
-        MaxKeys: LOAD_NUM
-    };
+function showObjectList(path, res, folders, objects) {
+    let items = [];
 
-    if(continueToken) {
-        params.ContinueToken = continueToken
+    folders.forEach(function(name) {
+        let link = '/archive/' + path + name;
+        items.push({
+            link: link,
+            name: name
+        })
+    });
+
+    objects.forEach(function(name) {
+        let link = '/archive/' + path + name;
+        items.push({
+            link: link,
+            name: name
+        })
+    });
+
+    if(path !== '/') {
+        items.unshift({
+            link: '../',
+            name: '../'
+        });
     }
 
-    s3.listObjectsV2(params, function (err, data) {
-        if (err) {
-            res.end(JSON.stringify(err));
-            return;
-        }
+    res.render('archive', { path: path, objects: items });
+}
 
-        let objects = [];
+function showObjectThumbnails(path, res, folders, objects) {
+    let items = [];
 
-        data.CommonPrefixes.forEach(function(element) {
-            let link = '/archive/' + element.Prefix;
-            let src = '';
-            objects.push({
-                link: link,
-                src: src
-            })
-        });
+    folders.forEach(function(name) {
+        let link = '/archive/' + path + name;
+        let src = '';
+        items.push({
+            link: link,
+            src: src
+        })
+    });
 
-        data.Contents.forEach(function(element) {
-            let link = '/archive/' + element.Key;
+    objects.forEach(function(name) {
+        let link = '/archive/' + path + name;
+        let url = ""
 
+        var re = /(?:\.([^.]+))?$/;
+        var ext = re.exec(name)[1];
+        if (ext === "txt") {
+            url = "/images/icons8-txt-96.png";
+        } else if (ext === 'gif') {
+            url = "/images/icons8-gif-96.png";
+        } else {
             const params = {
                 Bucket: thumbnailBucket,
-                Key: element.Key,
+                Key: path + name,
                 Expires: 60
             };
 
-            const url = s3.getSignedUrl('getObject', params);
-
-            objects.push({
-                link: link,
-                src: url
-            })
-        });
-
-        if(path !== '/') {
-            objects.unshift({
-                link: '../',
-                src: ''
-            });
+            url = s3.getSignedUrl('getObject', params);
         }
 
-        res.render('archive-thumbnail', { path: path, objects: objects });
+        items.push({
+            link: link,
+            src: url
+        })
     });
+
+    if(path !== '/') {
+        items.unshift({
+            link: '../',
+            src: '/images/icons8-folder-tree-96.png'
+        });
+    }
+
+    res.render('archive-thumbnail', { path: path, objects: items });
 }
 
 module.exports = router;
