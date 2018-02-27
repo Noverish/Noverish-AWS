@@ -151,6 +151,8 @@ function showObjectThumbnails(path, res, folders, objects) {
             url = "/images/icons8-txt-96.png";
         } else if (ext === 'gif') {
             url = "/images/icons8-gif-96.png";
+        } else if (ext === '3gp') {
+            url = "/images/icon-3gp.png";
         } else {
             const params = {
                 Bucket: thumbnailBucket,
