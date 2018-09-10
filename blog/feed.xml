@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Noverish Blog</title>
+    <description>Noverish's iOS &amp; Server development story blog</description>
+    <link>http://noverish.me/blog/</link>
+    <atom:link href="http://noverish.me/blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Fri, 13 Apr 2018 12:10:00 +0000</pubDate>
+    <lastBuildDate>Fri, 13 Apr 2018 12:10:00 +0000</lastBuildDate>
+    <generator>Jekyll v3.7.2</generator>
+    
+      <item>
+        <title>크롬에서 나만의 검색 엔진 사용하기</title>
+        <description>&lt;p&gt;개발자 여러분들은 구글링음 엄청 하고 계시리라 믿어 의심치 않습니다. &lt;br /&gt; 저도 그렇거든요 ㅎㅎ&lt;/p&gt; &lt;p&gt;많은 사람들이 구글 홈페이지에 들어가서 검색 하는 것이 아니라 바로 크롬 주소창에 키워드를 입력해서 검색하시는데요&lt;/p&gt; &lt;p&gt;우리는 요걸 이용해서 더 편한 검색 라이프를 즐겨보도록 하겠습니다. 여기서는 예시를 유튜브로 하도록 하겠습니다.&lt;/p&gt; &lt;hr /&gt; &lt;p&gt;&lt;img src=&quot;../images/Chrome-Custom-Search-Engine/000.jpg&quot; alt=&quot;image000&quot; /&gt; 크롬 설정에 들어갑니다.&lt;/p&gt; &lt;hr /&gt; &lt;p&gt;&lt;img src=&quot;../images/Chrome-Custom-Search-Engine/001.jpg&quot; alt=&quot;image001&quot; /&gt; 기타 검색엔진에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;추가&lt;/code&gt;를 누릅니다.&lt;/p&gt; &lt;hr /&gt; &lt;p&gt;&lt;img src=&quot;../images/Chrome-Custom-Search-Engine/002.jpg&quot; alt=&quot;image002&quot; /&gt; 위와 같이 입력하고 &lt;code class=&quot;highlighter-rouge&quot;&gt;URL&lt;/code&gt;에 아래와 같이 입력합니다 &lt;br /&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;https://www.youtube.com/results?search_query=%s&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;키워드&lt;/code&gt;는 우리가 이 엔진을 쓴다고 크롬에게 알리는 문구 입니다. &lt;br /&gt; 자세한건 밑의 gif 영상을 봐주세요&lt;/p&gt; &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;URL&lt;/code&gt;에서...</description>
+        <pubDate>Fri, 13 Apr 2018 11:48:00 +0000</pubDate>
+        <link>http://noverish.me/blog/Chrome-Custom-Search-Engine/</link>
+        <guid isPermaLink="true">http://noverish.me/blog/Chrome-Custom-Search-Engine/</guid>
+        
+        <category>chrome</category>
+        
+        <category>tip</category>
+        
+        
+        <category>tip</category>
+        
+      </item>
+    
+      <item>
+        <title>APEX로 AWS Lambda 개발하기</title>
+        <description>&lt;h3 id=&quot;1-apex-설치하기&quot;&gt;1. APEX 설치하기&lt;/h3&gt; &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;curl https://raw.githubusercontent.com/apex/apex/master/install.sh | &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;sh &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt; &lt;p&gt;macOS, Linux, or OpenBSD에서 위의 명령어를 실행시키면 자동으로 설치가 됩니다.&lt;/p&gt; &lt;hr /&gt; &lt;h3 id=&quot;2-apex에-aws-권한-부여하기&quot;&gt;2. APEX에 AWS 권한 부여하기&lt;/h3&gt; &lt;p&gt;APEX가 Lambda 함수들을 만들고/지우고/수정하고/실행할 수 있도록 권한을 줘야 합니다.&lt;/p&gt; &lt;p&gt;먼저 APEX가 필요로 하는 권한을 묶은 커스텀 정책을 만듭시다.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;../images/Lambda-APEX/001.jpg&quot; alt=&quot;image001&quot; /&gt; &lt;a href=&quot;https://console.aws.amazon.com/iam/home#/policies&quot;&gt;AWS IAM&lt;/a&gt;로 들어가서 &lt;code class=&quot;highlighter-rouge&quot;&gt;정책 생성&lt;/code&gt;을 누릅니다.&lt;/p&gt; &lt;hr /&gt; &lt;p&gt;&lt;img src=&quot;../images/Lambda-APEX/002.jpg&quot; alt=&quot;image002&quot; /&gt; json편집기에 들어가서 밑의 json을 그대로 입력해 줍시다. 그리고 &lt;code class=&quot;highlighter-rouge&quot;&gt;Review Policy&lt;/code&gt;를 누릅니다.&lt;/p&gt; &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Version&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2012-10-17&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Statement&quot;&lt;/span&gt;&lt;span...</description>
+        <pubDate>Tue, 27 Feb 2018 07:10:24 +0000</pubDate>
+        <link>http://noverish.me/blog/Lambda-APEX/</link>
+        <guid isPermaLink="true">http://noverish.me/blog/Lambda-APEX/</guid>
+        
+        <category>aws</category>
+        
+        <category>lambda</category>
+        
+        <category>apex</category>
+        
+        
+        <category>server</category>
+        
+      </item>
+    
+      <item>
+        <title>EC2 Container Service(ECS) 사용하기 + AutoScaling</title>
+        <description>&lt;h2 id=&quot;기본적인-docker-사용법은-안다고-가정하겠습니다-설치-명령어-등&quot;&gt;기본적인 Docker 사용법은 안다고 가정하겠습니다. (설치, 명령어 등)&lt;/h2&gt; &lt;p&gt;&lt;img src=&quot;../images/ECS-AutoScaling/000.jpg&quot; alt=&quot;image000&quot; /&gt;&lt;/p&gt; &lt;p&gt;현재 저는 접속하면 hello world를 띄워주는 서비스를 제공 하고 있습니다. 이 서비스는 AWS EC2와 nodejs를 사용하고 있습니다. ECS라는 서비스를 사용 하려고 합니다.&lt;/p&gt; &lt;h3 id=&quot;1-도커-이미지-만들기&quot;&gt;1. 도커 이미지 만들기&lt;/h3&gt; &lt;h4 id=&quot;dockerfile&quot;&gt;Dockerfile&lt;/h4&gt; &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;FROM ubuntu:16.04 MAINTAINER Noverish Harold &amp;lt;embrapers263@gmail.com&amp;gt; WORKDIR /root RUN apt-get update RUN apt-get install -y nodejs RUN apt-get install -y git RUN git clone https://github.com/Noverish/simple-nodejs CMD cd /root/simple-nodejs; git pull origin master; nodejs index.js EXPOSE 80 EXPOSE 443 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt; &lt;p&gt;위 처럼 자신이 만들고 싶은 도커 이미지의 Dockerfile을 만듭니다. Dockerfile은 만들 줄 아신다고 생각하겠습니다.&lt;/p&gt; &lt;div class=&quot;language-shell...</description>
+        <pubDate>Tue, 30 Jan 2018 07:31:30 +0000</pubDate>
+        <link>http://noverish.me/blog/ECS-AutoScaling/</link>
+        <guid isPermaLink="true">http://noverish.me/blog/ECS-AutoScaling/</guid>
+        
+        <category>aws</category>
+        
+        <category>ecs</category>
+        
+        <category>docker</category>
+        
+        
+        <category>server</category>
+        
+      </item>
+    
+      <item>
+        <title>낮은 Swift 버전을 쓰는 라이브러리 CocoaPod에서 사용하기</title>
+        <description>&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  pod 'LibraryName1'
+  pod 'LibraryName2'
+
+  post_install do |installer|
+      # Your list of targets here.
+      myTargets = ['LibraryName1', 'LibraryName2']
+
+      installer.pods_project.targets.each do |target|
+          if myTargets.include? target.name
+              target.build_configurations.each do |config|
+                  config.build_settings['SWIFT_VERSION'] = '3.2'
+              end
+          end
+      end
+  end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;LibraryName1, LibraryName2를 자신이 원하는 라이브러리 이름으로 바꾸면 된다.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 22 Jan 2018 10:50:44 +0000</pubDate>
+        <link>http://noverish.me/blog/iOS-Cocoa-Pod-Swift-Version/</link>
+        <guid isPermaLink="true">http://noverish.me/blog/iOS-Cocoa-Pod-Swift-Version/</guid>
+        
+        <category>swift</category>
+        
+        <category>cocoapod</category>
+        
+        
+        <category>ios</category>
+        
+      </item>
+    
+      <item>
+        <title>Facebook으로 로그인하기</title>
+        <description>&lt;h3 id=&quot;1-앱-기본-설정&quot;&gt;1. 앱 기본 설정&lt;/h3&gt; &lt;p&gt;&lt;img src=&quot;../images/iOS-Facebook-Login/000.jpg&quot; alt=&quot;image&quot; /&gt; &lt;a href=&quot;https://developers.facebook.com/&quot;&gt;페이스북 개발자 사이트&lt;/a&gt;에 접속해서 새 앱을 추가합니다.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;../images/iOS-Facebook-Login/001.jpg&quot; alt=&quot;image&quot; /&gt; 자신의 앱 이름을 적고 앱 ID를 만듭니다.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;../images/iOS-Facebook-Login/002.jpg&quot; alt=&quot;image&quot; /&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;Facebook으로 로그인&lt;/code&gt;을 누릅니다.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;../images/iOS-Facebook-Login/003.jpg&quot; width=&quot;300&quot; /&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;설정&lt;/code&gt;을 누릅니다.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;../images/iOS-Facebook-Login/004.jpg&quot; alt=&quot;image&quot; /&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;iOS&lt;/code&gt;를 누릅니다.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;../images/iOS-Facebook-Login/005.jpg&quot; alt=&quot;image&quot; /&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;iOS SDK 다운로드&lt;/code&gt;를 누릅니다.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;../images/iOS-Facebook-Login/006.jpg&quot; alt=&quot;image&quot; /&gt; 다운로드 받은 뒤 압축을 풀면 위와 같은 파일이 들어있습니다.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;../images/iOS-Facebook-Login/010.jpg&quot; alt=&quot;image&quot; /&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;Bolts.framework&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;FBSDKCoreKit.framework&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;FBSDKLoginKit.framework&lt;/code&gt; 을 드래그 앤 드롭해서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Frameworks&lt;/code&gt; 폴더에 넣어줍니다. 만약에 이 폴더가 없으면 만들어줍니다.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;../images/iOS-Facebook-Login/009.jpg&quot; alt=&quot;image&quot; /&gt; 이...</description>
+        <pubDate>Thu, 18 Jan 2018 12:35:42 +0000</pubDate>
+        <link>http://noverish.me/blog/iOS-Facebook-Login/</link>
+        <guid isPermaLink="true">http://noverish.me/blog/iOS-Facebook-Login/</guid>
+        
+        <category>swift</category>
+        
+        <category>facebook</category>
+        
+        
+        <category>ios</category>
+        
+      </item>
+    
+      <item>
+        <title>Kotlin과 Firebase를 사용하여 Android에 푸쉬 알림 보내기 - 서버편</title>
+        <description>&lt;h3 id=&quot;1-fcm-server-side-설명&quot;&gt;1. FCM Server Side 설명&lt;/h3&gt; &lt;p&gt;이제 Firebase 콘솔이 아니라 다른 방법으로 푸쉬 알림을 보내는 방법에 대해 설명하도록 하겠습니다. &lt;br /&gt; 다음과 같은 방법이 있습니다.&lt;/p&gt; &lt;ol&gt; &lt;li&gt;Firebase Admin Node.js SDK 사용하기&lt;/li&gt; &lt;li&gt;FCM HTTP v1 API (새로 나온 HTTP Request 방법)&lt;/li&gt; &lt;li&gt;Legacy HTTP protocol (예전에 사용하던 HTTP Request 방법)&lt;/li&gt; &lt;li&gt;Legacy XMPP Protocol&lt;/li&gt; &lt;/ol&gt; &lt;p&gt;여기서는 2번 방법을 사용해 보도록 하겠습니다.&lt;/p&gt; &lt;h3 id=&quot;2-firebase-cloud-messaging-켜기&quot;&gt;2. Firebase Cloud Messaging 켜기&lt;/h3&gt; &lt;p&gt;&lt;img src=&quot;../images/Android-Kotlin-Firebase-Push-Notification2/002.jpg&quot; alt=&quot;image002&quot; /&gt; &lt;a href=&quot;https://console.cloud.google.com/&quot;&gt;Google Cloud 콘솔&lt;/a&gt;로 들어갑니다. &lt;br /&gt; 여기 &lt;code class=&quot;highlighter-rouge&quot;&gt;Project ID&lt;/code&gt;를 기억해 둡시다 뒤에 푸쉬를 보낼 때 쓰입니다. &lt;br /&gt; 위와 같이 프로젝트가 &lt;code class=&quot;highlighter-rouge&quot;&gt;FCMExample&lt;/code&gt;로 되어 있는지 확인하고 만약에 아니라면 프로젝트 이름을...</description>
+        <pubDate>Mon, 08 Jan 2018 10:34:20 +0000</pubDate>
+        <link>http://noverish.me/blog/Android-Kotlin-Firebase-Push-Notification2/</link>
+        <guid isPermaLink="true">http://noverish.me/blog/Android-Kotlin-Firebase-Push-Notification2/</guid>
+        
+        <category>android</category>
+        
+        <category>kotlin</category>
+        
+        <category>firebase</category>
+        
+        <category>fcm</category>
+        
+        
+        <category>android</category>
+        
+      </item>
+    
+      <item>
+        <title>Kotlin과 Firebase를 사용하여 Android에 푸쉬 알림 보내기 - 클라이언트 편</title>
+        <description>&lt;h3 id=&quot;1-android-프로젝트-생성&quot;&gt;1. Android 프로젝트 생성&lt;/h3&gt; &lt;p&gt;&lt;img src=&quot;../images/Android-Kotlin-Firebase-Push-Notification/000.jpg&quot; alt=&quot;image000&quot; /&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;FCMExample&lt;/code&gt;이라는 이름의 프로젝트를 만듭니다. &lt;br /&gt; 우리는 Kotlin을 사용할 것 이므로 &lt;code class=&quot;highlighter-rouge&quot;&gt;Include Kotlin support&lt;/code&gt;에 체크를 해야 합니다.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;../images/Android-Kotlin-Firebase-Push-Notification/001.jpg&quot; alt=&quot;image001&quot; /&gt; Next를 누릅니다.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;../images/Android-Kotlin-Firebase-Push-Notification/002.jpg&quot; alt=&quot;image002&quot; /&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;Empty Activity&lt;/code&gt;를 선택합니다.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;../images/Android-Kotlin-Firebase-Push-Notification/003.jpg&quot; alt=&quot;image003&quot; /&gt; 간단하게 하기 위해 &lt;code class=&quot;highlighter-rouge&quot;&gt;Backwards Compatibility&lt;/code&gt;를 해제 했습니다.&lt;/p&gt; &lt;h3 id=&quot;2-firebase-프로젝트-생성&quot;&gt;2. Firebase 프로젝트 생성&lt;/h3&gt; &lt;p&gt;&lt;img src=&quot;../images/Android-Kotlin-Firebase-Push-Notification/004.jpg&quot; width=&quot;500&quot; /&gt; &lt;a href=&quot;https://console.firebase.google.com&quot;&gt;Firebase 콘솔&lt;/a&gt;로 들어가서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Add Project&lt;/code&gt;를 클릭합니다.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;../images/Android-Kotlin-Firebase-Push-Notification/005.jpg&quot; width=&quot;500&quot; /&gt; 프로젝트 이름을 &lt;code class=&quot;highlighter-rouge&quot;&gt;FCMExample&lt;/code&gt;이라고 했습니다. &lt;br /&gt; 국가는 한국으로 하고 &lt;code class=&quot;highlighter-rouge&quot;&gt;Create Project&lt;/code&gt;를 누릅니다.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;../images/Android-Kotlin-Firebase-Push-Notification/006.jpg&quot; width=&quot;500&quot; /&gt; 만들고 나서 나오는 화면에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Add Firebase...</description>
+        <pubDate>Sun, 07 Jan 2018 07:49:19 +0000</pubDate>
+        <link>http://noverish.me/blog/Android-Kotlin-Firebase-Push-Notification/</link>
+        <guid isPermaLink="true">http://noverish.me/blog/Android-Kotlin-Firebase-Push-Notification/</guid>
+        
+        <category>android</category>
+        
+        <category>kotlin</category>
+        
+        <category>firebase</category>
+        
+        <category>fcm</category>
+        
+        
+        <category>android</category>
+        
+      </item>
+    
+      <item>
+        <title>iOS에서 Naver Clova Speech Synthesis(CSS) 사용하기</title>
+        <description>&lt;p&gt;&lt;img src=&quot;../images/iOS-Naver-Clova-Speech-Synthesis/001.png&quot; alt=&quot;image001&quot; /&gt;&lt;/p&gt; &lt;p&gt;1. &lt;code class=&quot;highlighter-rouge&quot;&gt;CSSTest&lt;/code&gt;라는 이름의 프로젝트를 만듭니다. 여기서 Bundle Identifier는 뒤에서 쓰이니 기억해둡시다.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;../images/iOS-Naver-Clova-Speech-Synthesis/002.png&quot; alt=&quot;image002&quot; /&gt;&lt;/p&gt; &lt;p&gt;2. &lt;a href=&quot;https://developers.naver.com/main/&quot;&gt;네이버 개발자 센터&lt;/a&gt;에 가서 새로운 어플리케이션을 등록하는 페이지로 갑니다.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;../images/iOS-Naver-Clova-Speech-Synthesis/003.png&quot; alt=&quot;image003&quot; /&gt;&lt;/p&gt; &lt;p&gt;3. 휴대폰 인증을 하고 회사 이름은 아무거나 적어줍시다.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;../images/iOS-Naver-Clova-Speech-Synthesis/004.png&quot; alt=&quot;image004&quot; /&gt;&lt;/p&gt; &lt;p&gt;4. 어플리케이션 이름은 아무거나 적어도 상관 없습니다. 저는 &lt;code class=&quot;highlighter-rouge&quot;&gt;CSSTest&lt;/code&gt; 라고 적었습니다. 그리고 사용 API에 &lt;code class=&quot;highlighter-rouge&quot;&gt;Clova Speech Synthesis&lt;/code&gt;를 선택하고 iOS환경을 추가해서 1번의 Bundle Identifier를 적습니다.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;../images/iOS-Naver-Clova-Speech-Synthesis/005.png&quot; alt=&quot;image005&quot; /&gt;&lt;/p&gt; &lt;p&gt;5. 그러고 나면 이렇게 Client ID와 Client Secret이 보이는 페이지로 넘어갑니다. 이 두 개는 뒤에서 쓰이니 기억해둡시다.&lt;/p&gt; &lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;import&lt;/span&gt;...</description>
+        <pubDate>Tue, 21 Nov 2017 03:54:38 +0000</pubDate>
+        <link>http://noverish.me/blog/iOS-Naver-Clova-Speech-Synthesis/</link>
+        <guid isPermaLink="true">http://noverish.me/blog/iOS-Naver-Clova-Speech-Synthesis/</guid>
+        
+        <category>ios</category>
+        
+        <category>swift</category>
+        
+        <category>naver</category>
+        
+        <category>clova-speech-synthesis</category>
+        
+        
+        <category>swift</category>
+        
+      </item>
+    
+      <item>
+        <title>웹에 있는 오디오 재생하기</title>
+        <description>&lt;p&gt;&lt;img src=&quot;../images/iOS-Audio-From-Web/001.png&quot; alt=&quot;image001&quot; /&gt;&lt;/p&gt; &lt;p&gt;1. 프로젝트의 &lt;code class=&quot;highlighter-rouge&quot;&gt;Info.plist&lt;/code&gt;에 &lt;code class=&quot;highlighter-rouge&quot;&gt;App Transport Security Settings&lt;/code&gt;를 추가합니다. 그리고 그 안에 &lt;code class=&quot;highlighter-rouge&quot;&gt;Allow Arbitrary Loads&lt;/code&gt;를 추가하고 그 값을 &lt;code class=&quot;highlighter-rouge&quot;&gt;YES&lt;/code&gt;로 바꿔줍니다.&lt;/p&gt; &lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;UIKit&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;AVFoundation&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;ViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;UIViewController&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;player&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;AVPlayer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;viewDidLoad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;http://radio.spainmedia.es/wp-content/uploads/2015/12/tailtoddle_lo4.mp3&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;playerItem&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;AVPlayerItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;NSURL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;URL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span...</description>
+        <pubDate>Mon, 20 Nov 2017 11:24:48 +0000</pubDate>
+        <link>http://noverish.me/blog/iOS-Audio-From-Web/</link>
+        <guid isPermaLink="true">http://noverish.me/blog/iOS-Audio-From-Web/</guid>
+        
+        <category>ios</category>
+        
+        <category>swift</category>
+        
+        <category>audio</category>
+        
+        
+        <category>swift</category>
+        
+      </item>
+    
+      <item>
+        <title>Cell의 높이가 변하는 테이블 뷰 만들기</title>
+        <description>&lt;p&gt;&lt;img src=&quot;../images/iOS-Paging-Table-View/023.jpg&quot; width=&quot;300&quot; /&gt;&lt;/p&gt; &lt;p&gt;이렇게 각 셀의 높이가 서로 다른 테이블 뷰를 만드려고 합니다.&lt;/p&gt; &lt;h2 id=&quot;item-파일-만들기&quot;&gt;item 파일 만들기&lt;/h2&gt; &lt;p&gt;각각의 셀의 정보를 담고 있는 item파일을 만듭시다&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;../images/iOS-Paging-Table-View/000.jpg&quot; alt=&quot;image001&quot; /&gt;&lt;/p&gt; &lt;ol&gt; &lt;li&gt;Swift파일을 하나 만듭니다&lt;/li&gt; &lt;/ol&gt; &lt;p&gt;&lt;img src=&quot;../images/iOS-Paging-Table-View/001.jpg&quot; alt=&quot;image002&quot; /&gt;&lt;/p&gt; &lt;ol&gt; &lt;li&gt;TestItem 이라고 이름을 붙였습니다&lt;/li&gt; &lt;/ol&gt; &lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;TestItem&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;title&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;content&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;...</description>
+        <pubDate>Wed, 17 May 2017 06:44:46 +0000</pubDate>
+        <link>http://noverish.me/blog/iOS-Paging-Table-View/</link>
+        <guid isPermaLink="true">http://noverish.me/blog/iOS-Paging-Table-View/</guid>
+        
+        <category>ios</category>
+        
+        <category>swift</category>
+        
+        <category>uitableview</category>
+        
+        
+        <category>swift</category>
+        
+      </item>
+    
+      <item>
+        <title>커스텀 뷰 만드는 법</title>
+        <description>&lt;p&gt;&lt;img src=&quot;../images/iOS-Custom-View/001.png&quot; alt=&quot;image001&quot; /&gt;&lt;/p&gt; &lt;p&gt;먼저 Cocoa Touch Class 새로운 파일을 하나 만듭니다.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;../images/iOS-Custom-View/002.png&quot; alt=&quot;image002&quot; /&gt;&lt;/p&gt; &lt;p&gt;원하는 커스텀 뷰의 이름을 넣습니다. 여기서는 TestView라고 했습니다.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;../images/iOS-Custom-View/003.png&quot; alt=&quot;image003&quot; /&gt;&lt;/p&gt; &lt;p&gt;그 다음 새로운 xib 파일을 하나 만듭니다.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;../images/iOS-Custom-View/004.png&quot; alt=&quot;image004&quot; /&gt;&lt;/p&gt; &lt;p&gt;이 xib 파일의 이름도 아까와 같은 이름으로 해줍시다. 반드시 그래야 되는 건 아닌데 안 헷갈리기 위해 같게 해줍시다.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;../images/iOS-Custom-View/005.png&quot; alt=&quot;image005&quot; /&gt;&lt;/p&gt; &lt;p&gt;File’s Owner를 클릭한 다음에 아까 만들었던 Cocoa Touch Class 파일의 이름을 적습니다&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;../images/iOS-Custom-View/006.png&quot; alt=&quot;image006&quot; /&gt;&lt;/p&gt; &lt;p&gt;그런데 지금은 root 뷰의 크기를 바꿀 수가 없습니다. root 뷰의 Property의 Size를 Freedom으로 바꿔줍시다. 그러면 root뷰의 크기를 바꿀 수 있습니다. 그 다음 자유롭게...</description>
+        <pubDate>Sun, 14 May 2017 04:14:42 +0000</pubDate>
+        <link>http://noverish.me/blog/iOS-Custom-View/</link>
+        <guid isPermaLink="true">http://noverish.me/blog/iOS-Custom-View/</guid>
+        
+        <category>ios</category>
+        
+        <category>swift</category>
+        
+        <category>view</category>
+        
+        
+        <category>swift</category>
+        
+      </item>
+    
+      <item>
+        <title>Noverish의 기술블로그 시작합니다!</title>
+        <description>&lt;p&gt;Noverish의 기술블로그 시작합니다!&lt;/p&gt;
+</description>
+        <pubDate>Mon, 03 Apr 2017 06:44:46 +0000</pubDate>
+        <link>http://noverish.me/blog/init/</link>
+        <guid isPermaLink="true">http://noverish.me/blog/init/</guid>
+        
+        
+        <category>init</category>
+        
+      </item>
+    
+  </channel>
+</rss>
